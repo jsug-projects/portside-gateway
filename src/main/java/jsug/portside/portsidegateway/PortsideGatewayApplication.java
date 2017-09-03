@@ -23,7 +23,8 @@ public class PortsideGatewayApplication {
 			headers.add("Access-Control-Allow-Methods",
 					"OPTIONS, POST, GET, OPTIONS, PUT, DELETE");
 			headers.add("Access-Control-Max-Age", "3600");
-			headers.add("Access-Control-Allow-Headers", "*");
+			headers.add("Access-Control-Allow-Headers",
+					"Origin, X-Requested-With, Content-Type, Accept, Authorization");
 			return chain.filter(exchange);
 		};
 	}
