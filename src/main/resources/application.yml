@@ -32,14 +32,6 @@ spring:
         - Path=/attendees/**
         filters:
         - Hystrix=attendees
-      default-filters:
-      - AddResponseHeader=Access-Control-Allow-Origin, *
-      - AddResponseHeader=Access-Control-Max-Age, 360
-      - AddResponseHeader=Access-Control-Allow-Headers, *
-      - name: AddResponseHeader
-        args:
-          name: Access-Control-Allow-Methods
-          value: GET, POST, PATCH, PUT, DELETE, OPTIONS
 server:
   port: 9090
 security:
