@@ -1,0 +1,43 @@
+portside-api.uri: ${PORTSIDE_API_URI:http://localhost:8088}
+
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.cloud.stream.binder: INFO
+    org.springframework.http.server.reactive: DEBUG
+    org.springframework.web.reactive: DEBUG
+    reactor.ipc.netty: DEBUG
+#    org.springframework.cloud: DEBUG
+#    com.netflix: DEBUG
+
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: sessions
+        uri: ${portside-api.uri}
+        predicates:
+        - Path=/sessions/**
+        filters:
+        - Hystrix=sessions
+      - id: speakers
+        uri: ${portside-api.uri}
+        predicates:
+        - Path=/speakers/**
+        filters:
+        - Hystrix=speakers
+      - id: attendees
+        uri: ${portside-api.uri}
+        predicates:
+        - Path=/attendees/**
+        filters:
+        - Hystrix=attendees
+server:
+  port: 9090
+security:
+  basic:
+    enabled: false
+eureka:
+  client:
+    enabled: false
+
